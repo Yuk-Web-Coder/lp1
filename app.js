@@ -35,6 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function logTapEvent(category, value, action = '選択') {
+    // GA4 Micro-interaction tracking
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'lp_tap_interaction', {
+        event_category: category,
+        event_label: value,
+        action_type: action
+      });
+    }
+
     if (!CONFIG.SUBMISSION_ENDPOINT || !value) return;
 
     const payload = {
@@ -764,6 +773,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (formSubmitBtn) {
         formSubmitBtn.disabled = false;
         formSubmitBtn.textContent = 'アンケートを送信する';
+      }
+
+      // GA4 Lead Conversion Event (Key Event)
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'form_submission',
+          event_label: 'YESS 開発案内アンケート送信完了',
+          product: 'YESS'
+        });
       }
 
       if (receiptSummary) {
