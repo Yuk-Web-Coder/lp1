@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add('js');</script>
+  <meta name="description" content="YESSは、PC作業やデスクワーク中に手元を汚さず一口で野菜の食物繊維を補給できる新発想のデスク向け間食プロダクトです。">
+  <title>YESS - デスクワークのためのひとくち野菜間食（コンセプト検証・開発案内登録）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Load ONLY weights 100/200 and 800/900 as strictly required -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;800;900&family=Noto+Sans+JP:wght@100;200;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Tactile Matte Paper / Stone Texture Overlay (Zero Gradients) -->
+  <div class="matte-grain" aria-hidden="true"></div>
+
+  <!-- Architectural Vertical Guide Lines -->
+  <div class="architectural-guides" aria-hidden="true">
+    <div class="guide-col"></div>
+    <div class="guide-col"></div>
+    <div class="guide-col"></div>
+    <div class="guide-col"></div>
+  </div>
+
+  <!-- Top Luxury Editorial Navigation -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#top" class="brand-mark" aria-label="YESS トップページへ">
+        <img src="assets/yess-logo-brass.png" alt="YESS" class="brand-logo-img" width="88" height="24">
+        <span class="brand-sub">ひとくち野菜、ぽりっと手軽に</span>
+      </a>
+      <nav class="header-nav" aria-label="セクション移動">
+        <a href="#sec-cinema" class="nav-item">01 ストーリー</a>
+        <a href="#sec-product" class="nav-item">02 プロダクト</a>
+        <a href="#sec-flavor-board" class="nav-item">03 フレーバー候補</a>
+        <a href="#sec-problem" class="nav-item">04 デスクの悩み</a>
+        <a href="#sec-hypothesis" class="nav-item">05 試作設計</a>
+        <a href="#sec-scenes" class="nav-item">06 想定シーン</a>
+      </nav>
+      <a href="#sec-entry" class="header-action-btn">開発案内を受け取る</a>
+    </div>
+  </header>
+
+  <!-- ==================================================================
+       SCENE 1: CINEMATIC SCROLL-DRIVEN VIDEO ZOOM TRACK
+       Wide Office -> Zoom to Desk Snack -> Extreme Macro Close-Up
+       ================================================================== -->
+  <section id="sec-cinema" class="cinema-scroll-track" aria-label="デスクワーカーの間食シーン">
+    <div class="cinema-sticky-stage" id="cinema-sticky">
+      <!-- Background Scrubbing Video -->
+      <div class="cinema-video-layer">
+        <video id="scroll-video" muted playsinline preload="auto" poster="assets/video_poster.jpg"
+          src="assets/desk_worker_snack_scrub.mp4">
+        </video>
+        <div class="video-tint-shade" aria-hidden="true"></div>
+      </div>
+
+      <!-- Scroll-Synchronized Editorial Captions (Float Up into View) -->
+      <div class="cinema-captions-container">
+
+
+        <!-- Caption Stage 1: Wide Office (0% - 30%) -->
+        <div class="cinema-caption-stage is-active" id="caption-stage-1">
+
+          <h2 class="caption-heading">
+            PC作業中、ふと手が伸びる<br>
+            デスクの間食。
+          </h2>
+          <p class="caption-desc">
+            モニターを見つめたまま、思考の合間にデスクの上の間食へ手が伸びる。キーボードを叩き続ける日々の作業環境で、無意識に繰り返されるひとコマです。
+          </p>
+        </div>
+
+        <!-- Caption Stage 2: Zoom to Desk Snack (30% - 65%) -->
+        <div class="cinema-caption-stage" id="caption-stage-2">
+
+          <h2 class="caption-heading">
+            油で汚れるキーボード。<br>
+            落ちる粉。昼食の野菜不足。
+          </h2>
+          <p class="caption-desc">
+            指先のベタつきでマウスやキーが汚れるストレス。かじるたびに散らばる細かい破片。そして、炭水化物に偏りがちなランチへの罪悪感。デスクワーカーの日常には小さな摩擦が潜んでいます。
+          </p>
+        </div>
+
+        <!-- Caption Stage 3: Extreme Macro Close-Up (65% - 100%) -->
+        <div class="cinema-caption-stage" id="caption-stage-3">
+
+          <h2 class="caption-heading">
+            ひとくち野菜、<br>
+            ぽりっと手軽に。
+          </h2>
+          <p class="caption-desc">
+            画面から目を離さず、指もキーボードも汚さずに野菜を手軽に補給できる、デスクワーカーのための新しい一口間食「YESS」の設計がここから始まります。
+          </p>
+        </div>
+
+        <!-- Scroll Indicator Hint -->
+        <div class="scroll-indicator-mouse" aria-hidden="true">
+          <span class="mouse-icon"></span>
+          <span>スクロールで拡大表示</span>
+        </div>
+
+        <!-- Floating Scrubber / Auto-Play Controller Widget -->
+        <div class="cinema-controls-widget">
+          <div class="controls-row">
+            <span>拡大率</span>
+            <strong id="scrub-pct-text">0%</strong>
+          </div>
+          <div class="scrubber-track" id="scrubber-track" title="クリックまたはドラッグで早送り/巻き戻し">
+            <div class="scrubber-fill" id="scrubber-fill"></div>
+          </div>
+          <div class="control-btn-group">
+            <button type="button" class="widget-btn" id="btn-play-pause">自動再生</button>
+            <button type="button" class="widget-btn" id="btn-skip-product">商品を見る ↓</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       MAIN CONTENT CONTAINER
+       ================================================================== -->
+  <main class="page-content" id="top">
+
+    <!-- ==================================================================
+         SECTION 1.5: PRODUCT INTRO & REAL PHOTOGRAPHY SHOWCASE
+         ================================================================== -->
+    <section id="sec-product" class="section-frame product-intro-grid">
+      <!-- Left Column: Editorial Highlights & Stress Survey -->
+      <div class="intro-editorial-col reveal-item">
+        <div>
+
+
+          <h2 class="intro-main-heading">
+            作業中の間食で<br>
+            <span class="brass-text">野菜補給。</span>
+          </h2>
+
+          <p class="intro-lead-copy">
+            キーボードの隙間に落ちるお菓子の粉や、指先につく油・ベタつき。気になって作業の手が止まっていませんか？<br>
+            「YESS」は、画面から目を離さず、パソコンやデスクを汚さずに一口で野菜をとれるように開発中の新しい間食です。
+          </p>
+
+          <!-- Core Feature Architecture Highlights -->
+          <ul class="intro-feature-list">
+            <li class="intro-feature-item">
+              <strong>01 手につかない</strong>
+              <span>指で直接つまんでも、キーボードやマウスに油膜やベタつきがつきにくい設計</span>
+            </li>
+            <li class="intro-feature-item">
+              <strong>02 一口キューブ</strong>
+              <span>前歯でかじる必要がないため、キーの隙間やデスクに破片が飛び散りません</span>
+            </li>
+            <li class="intro-feature-item">
+              <strong>03 野菜の繊維</strong>
+              <span>野菜本来の食物繊維を活かし、デスクで手軽につまめる形状へ</span>
+            </li>
+          </ul>
+
+          <!-- Shortcut to Flavor Interest Voting -->
+          <a href="#sec-flavor-board" class="flavor-board-jump-btn">
+            <span>どんな味が興味ある？<br class="btn-break-mobile">フレーバー候補を見る</span>
+            <span>↓</span>
+          </a>
+        </div>
+
+        <!-- 15-Second Quick Survey CTA -->
+        <div>
+          <div class="hero-survey-box">
+            <div class="survey-box-header">
+              <span class="survey-box-tag">15秒アンケート // クリックで回答</span>
+            </div>
+            <p class="survey-box-question">
+              パソコン作業中の間食で、一番ストレスに感じることはどれですか？（下部の登録フォームに自動反映されます）
+            </p>
+            <div class="survey-options-2x2">
+              <button type="button" class="survey-option-btn" data-sync-pain="キーボードやマウスに油やベタつきがつく">
+                指の油やベタつきで、キーボードやマウスが汚れる
+              </button>
+              <button type="button" class="survey-option-btn" data-sync-pain="デスクやキーの隙間に粉・破片が落ちる">
+                キーボードの隙間やデスクに粉・破片が落ちる
+              </button>
+              <button type="button" class="survey-option-btn" data-sync-pain="噛む音や匂いが、周囲やオンライン会議で気になる">
+                噛む音や匂いが、周囲やオンライン会議で気になる
+              </button>
+              <button type="button" class="survey-option-btn" data-sync-pain="昼食が麺類やパンばかりで野菜が足りない">
+                昼ごはんが偏りがちで、野菜不足が気になっている
+              </button>
+            </div>
+            <a href="#sec-entry" class="luxury-cta-btn">
+              <span>アンケートに回答して<br class="btn-break-mobile">開発案内を受け取る</span>
+            </a>
+          </div>
+
+          <p class="hero-footnote">
+            ※本ページは商品の販売ではなく、パソコン作業中の間食についての課題調査および製品開発のための需要検証を目的としています。
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Real Product Photography Gallery (Clean, No 3D Models) -->
+      <div class="intro-gallery-col reveal-item delay-1">
+        <div class="gallery-view-switcher">
+          <div class="gallery-tab-group" role="tablist">
+            <button type="button" class="gallery-tab is-active" data-gallery-mode="package">パッケージ実物</button>
+            <button type="button" class="gallery-tab" data-gallery-mode="cubes">4種の野菜キューブ実物</button>
+          </div>
+          <span class="gallery-hint">タブで切替可能</span>
+        </div>
+
+        <div class="product-photo-stage">
+          <!-- View 1: Product Package (assets/product-package.jpg) -->
+          <div class="product-gallery-card is-visible" id="gallery-card-package">
+            <img src="assets/product-package.jpg" alt="YESS パッケージ（キャロット＆ナッツ味 ／ トマト＆ハーブ味 開発中の試作イメージ）">
+            <div class="photo-caption-bar">
+              <div class="photo-caption-main">
+                <strong>パッケージ（キャロット＆ナッツ味 ／ トマト＆ハーブ味）</strong>
+                <span>デスクに自立するスタンドパウチ仕様</span>
+              </div>
+              <span class="image-dev-note">※画像は開発途中のイメージ画像です。実際の製品仕様・パッケージデザインとは異なる場合があります。</span>
+            </div>
+          </div>
+
+          <!-- View 2: Real Vegetable Cubes (assets/product-cubes.png) -->
+          <div class="product-gallery-card" id="gallery-card-cubes">
+            <img src="assets/product-cubes.png" alt="YESS 4種のひとくち野菜キューブ（開発中の試作イメージ）">
+            <div class="photo-caption-bar">
+              <div class="photo-caption-main">
+                <strong>4種のひとくち野菜キューブ</strong>
+                <span>ほうれん草 ／ にんじん ／ かぼちゃ ／ 紫いも</span>
+              </div>
+              <span class="image-dev-note">※画像は開発途中のイメージ画像です。実際の製品仕様・形状とは異なる場合があります。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 1.8: FLAVOR INTEREST VOTING BOARD (どんな味が興味あるか投票)
+         ================================================================== -->
+    <section id="sec-flavor-board" class="section-frame flavor-board-section">
+      <div class="flavor-board-header reveal-item">
+
+        <h2 class="flavor-board-title">
+          デスクワーク中、<br>
+          <span class="brass-text">どんな味なら食べたいですか？</span>
+        </h2>
+        <p class="flavor-board-lead">
+          「キーボードを叩きながら、どんな味なら思わず手を伸ばしたくなるか？」<br>
+          開発中などの制約は度外視で構いません。あなたがデスクで本当に食べたい味を直感でお選びください（複数選択可）。選んだ味はページ下部のアンケート（Q4）へ自動反映されます。
+        </p>
+      </div>
+
+      <div class="flavor-grid-6col">
+        <!-- Card 1: Tomato & Basil -->
+        <button type="button" class="flavor-choice-card reveal-item delay-1" data-flavor-id="tomato-basil"
+          data-flavor-name="完熟トマト＆バジル">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-tomato" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">旨みとハーブ</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">完熟トマト＆バジル</h3>
+            <p class="flavor-taste-notes">
+              濃厚な完熟トマトの旨みと爽快なハーブの香り。ピザのような豊かな満足感がありながら、ベタつかず後味すっきり。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+
+        <!-- Card 2: Carrot & Roast Nuts -->
+        <button type="button" class="flavor-choice-card reveal-item delay-2" data-flavor-id="carrot-nuts"
+          data-flavor-name="キャロット＆ローストナッツ">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-carrot" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">甘みと香ばしさ</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">キャロット＆ローストナッツ</h3>
+            <p class="flavor-taste-notes">
+              にんじん本来の自然な甘みに、香ばしく砕いたローストナッツのコク。疲れた頭にやさしい満足感を届けます。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+
+        <!-- Card 3: Black Pepper & Cheese -->
+        <button type="button" class="flavor-choice-card reveal-item delay-3" data-flavor-id="pepper-cheese"
+          data-flavor-name="ブラックペッパー＆芳醇チーズ">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-cheese" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">刺激とコク</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">ブラックペッパー＆芳醇チーズ</h3>
+            <p class="flavor-taste-notes">
+              ピリッと効いた粗挽き黒胡椒に濃厚な熟成チーズの塩味。眠気覚ましや夕方の作業ラストスパートに。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+
+        <!-- Card 4: Pumpkin & Almond -->
+        <button type="button" class="flavor-choice-card reveal-item delay-1" data-flavor-id="pumpkin-almond"
+          data-flavor-name="北海道かぼちゃ＆アーモンド">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-pumpkin" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">濃厚な食物繊維</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">北海道かぼちゃ＆アーモンド</h3>
+            <p class="flavor-taste-notes">
+              ほくほくとしたかぼちゃの濃厚な甘みとアーモンドの歯ごたえ。罪悪感なくスイーツ欲を満たしたい時に。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+
+        <!-- Card 5: Curry & Onion -->
+        <button type="button" class="flavor-choice-card reveal-item delay-2" data-flavor-id="curry-onion"
+          data-flavor-name="芳醇スパイスカリー＆オニオン">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-spice" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">芳醇スパイス</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">芳醇スパイスカリー＆オニオン</h3>
+            <p class="flavor-taste-notes">
+              10種ブレンドスパイスの香りとじっくり炒めた玉ねぎのコク。作業中の強烈なリフレッシュに。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+
+        <!-- Card 6: Soy Sauce & Edamame -->
+        <button type="button" class="flavor-choice-card reveal-item delay-3" data-flavor-id="soysauce-edamame"
+          data-flavor-name="焦がし醤油＆ロースト枝豆">
+          <div>
+            <div class="flavor-card-top-row">
+              <div class="flavor-tag-group"><span class="flavor-dot flavor-dot-edamame" aria-hidden="true"></span><span
+                  class="flavor-profile-tag">伝統の香ばしさ</span></div>
+              <span class="flavor-check-circle" aria-hidden="true"></span>
+            </div>
+            <h3 class="flavor-name-heading">焦がし醤油＆ロースト枝豆</h3>
+            <p class="flavor-taste-notes">
+              焦がし醤油の香ばしさと枝豆の豊かな旨み。おせんべい感覚でポリポリ食べられる和風仕立て。
+            </p>
+          </div>
+          <div class="flavor-card-bottom">
+            <span class="flavor-vote-action-label">この味を選択する</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Write-In Flavor Request Box -->
+      <div class="flavor-custom-request-box reveal-item">
+        <label for="custom-flavor-input" class="request-box-label">
+          他に「こんな味があったら絶対に食べたい！」というアイデアはありますか？
+        </label>
+        <input type="text" id="custom-flavor-input" class="request-text-input"
+          placeholder="例：梅かつお、柚子胡椒、ハニーマスタード、シナモンアップルなど自由に入力...">
+        <button type="button" id="btn-submit-custom-flavor" class="request-add-btn">アイデアを送信</button>
+      </div>
+      <div class="flavor-feedback-alert" id="flavor-feedback-alert">
+        リクエストありがとうございます！内容をページ下部のアンケート（Q4）に反映しました。
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 2: PROBLEM DEFINITION (Workspace & Dietary Friction)
+         ================================================================== -->
+    <section id="sec-problem" class="section-frame">
+      <div class="section-intro-grid reveal-item">
+        <div>
+
+          <h2 class="section-display-title">
+            デスクの汚れか、<br>
+            野菜不足か。
+          </h2>
+        </div>
+        <p class="section-description">
+          パソコン作業が長くなると、デスクまわりをきれいに保つことと、ちゃんと野菜をとることを両立するのは意外と難しいものです。
+        </p>
+      </div>
+
+      <div class="problem-grid-2col">
+        <article class="problem-card-item reveal-item delay-1">
+          <div class="problem-header-row">
+            <span class="problem-en-title">デスク環境の汚れ</span>
+            <span class="problem-number">01</span>
+          </div>
+          <h3 class="problem-ja-subhead">油やベタつき、粉落ちで作業が止まる</h3>
+          <p class="problem-body-text">
+            ナッツの油やチョコのベタつきが指につくと、キーボードやマウス、トラックパッドが汚れてしまいます。クッキーやバー菓子をかじると、細かい破片がどうしてもキーの隙間に落ちてしまいます。そのたびにウェットティッシュで手を拭いたりデスクを払ったりと、せっかくの集中が途切れてしまいます。
+          </p>
+        </article>
+
+        <article class="problem-card-item reveal-item delay-2">
+          <div class="problem-header-row">
+            <span class="problem-en-title">昼食の偏りと不足</span>
+            <span class="problem-number">02</span>
+          </div>
+          <h3 class="problem-ja-subhead">昼食が手軽な炭水化物ばかりになってしまう</h3>
+          <p class="problem-body-text">
+            忙しい日のランチは、うどんやラーメン、パン、おにぎりなど、手早く食べられる炭水化物だけで済ませてしまいがちです。かといってデスクで生野菜サラダを食べるのは、ドレッシングの飛び散りや片付けの手間があって面倒なもの。市販のお菓子ばかりだと、「また野菜をとれなかったな」という罪悪感が残ってしまいます。
+          </p>
+        </article>
+      </div>
+
+      <!-- Intermediate Checkpoint Bar -->
+      <div class="checkpoint-bar reveal-item">
+        <div class="checkpoint-question">
+          <span class="checkpoint-label">設問</span>
+          <span>あなたのデスクワークでは、どちらの悩みがより気になりますか？</span>
+        </div>
+        <div class="checkpoint-buttons">
+          <button type="button" class="checkpoint-btn" data-poll-choice="01: パソコンやデスクの汚れ">01: パソコンやデスクの汚れ</button>
+          <button type="button" class="checkpoint-btn" data-poll-choice="02: 昼食の偏りと野菜不足">02: 昼食の偏りと野菜不足</button>
+          <button type="button" class="checkpoint-btn" data-poll-choice="両方気になる" data-jump="true">両方気になる（案内登録へ）</button>
+        </div>
+        <div class="checkpoint-notice" id="poll-feedback-msg">
+          ご回答ありがとうございます。選択内容をページ下部の開発案内登録フォームへ引き継ぎました。
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 3: PROTOTYPE ARCHITECTURE & PRODUCT GALLERY
+         ================================================================== -->
+    <section id="sec-hypothesis" class="section-frame">
+      <div class="section-intro-grid reveal-item">
+        <div>
+
+          <h2 class="section-display-title">
+            YESSの<br>
+            試作アイデア。
+          </h2>
+        </div>
+        <p class="section-description">
+          普通のお菓子や1本型の栄養バーではなく、「パソコンの前に置きっぱなしで気兼ねなく食べられること」を目指して、個包装スティック×一口キューブの設計をテストしています。
+        </p>
+      </div>
+
+      <!-- Product Real Visual Showcase -->
+      <div class="product-visual-showcase">
+        <div class="visual-panel reveal-item delay-1">
+          <div class="visual-frame-card">
+            <img src="assets/product-package.jpg" alt="YESS パッケージ（キャロット＆ナッツ味 ／ トマト＆ハーブ味 開発中の試作イメージ）">
+          </div>
+          <div>
+            <h3 class="visual-caption-title">デスクに自立するスタンドパウチ仕様（キャロット＆ナッツ ／ トマト＆ハーブ）</h3>
+            <p class="visual-caption-text">
+              パソコンの横にスマートに置けるパッケージデザイン。作業の流れを妨げず、一口サイズを取り出しやすいスタンドパウチ形状を試作検証しています。
+            </p>
+            <span class="image-dev-note">※画像は開発途中の試作イメージ画像です。実際の製品仕様・デザインとは異なる場合があります。</span>
+          </div>
+        </div>
+
+        <div class="visual-panel reveal-item delay-2">
+          <div class="visual-frame-card">
+            <img src="assets/product-cubes.png" alt="YESS 4種類のひとくち野菜キューブ（開発中の試作イメージ）">
+          </div>
+          <div>
+            <h3 class="visual-caption-title">作業中につまみやすい「ひとくち野菜キューブ」</h3>
+            <p class="visual-caption-text">
+              野菜そのものの繊維質を活かして一口サイズに成形。前歯でかじり取る必要がないため、キーボードやデスクの上に細かい破片が飛び散りません。
+            </p>
+            <span class="image-dev-note">※画像は開発途中の試作イメージ画像です。実際の製品仕様・形状とは異なる場合があります。</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Core Design Hypotheses -->
+      <div class="hypothesis-3col">
+        <article class="hypothesis-module reveal-item delay-1">
+          <div class="hypo-index-bar">
+            <span>試作 01</span><span>形状設計</span>
+          </div>
+          <div class="hypo-large-code">一口キューブ設計</div>
+          <h3 class="hypo-title">かじらずに済むから、粉が飛び散らない</h3>
+          <p class="hypo-text">
+            長いバーを前歯でかじると、どうしてもボロボロと破片が落ちてしまいます。そこで、最初から一口でパクッと口に入るキューブサイズに小分けしました。画面を見つめたまま片手でつまめて、オンライン会議やオフィスでも噛む音が気になりにくい大きさを探っています。
+          </p>
+        </article>
+
+        <article class="hypothesis-module reveal-item delay-2">
+          <div class="hypo-index-bar">
+            <span>試作 02</span><span>手ざわり</span>
+          </div>
+          <div class="hypo-large-code">ドライタッチ設計</div>
+          <h3 class="hypo-title">つまんだ直後にキーボードやマウスに触れる</h3>
+          <p class="hypo-text">
+            作業中のPCやマウス操作を妨げないよう、指先へのベタつきや油膜の付着を抑える配合・表面加工を研究しています。さらに表面の粉落ちを抑える設計により、指で直接つまんで食べても手元やデスクを汚しにくい、サラッとした手ざわりを目指しています。
+          </p>
+        </article>
+
+        <article class="hypothesis-module reveal-item delay-3">
+          <div class="hypo-index-bar">
+            <span>試作 03</span><span>素材設計</span>
+          </div>
+          <div class="hypo-large-code">野菜繊維成形</div>
+          <h3 class="hypo-title">野菜の食物繊維を活かした成形設計</h3>
+          <p class="hypo-text">
+            野菜そのものの食物繊維を活用し、デスクワーク中に食べても重たさを感じにくい配合を研究しています。作業の集中を妨げない、自然な後味と食べ心地を目指しています。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 4: TARGET DISCOVERY & USE CASES (5 Work Scenes)
+         ================================================================== -->
+    <section id="sec-scenes" class="section-frame">
+      <div class="section-intro-grid reveal-item">
+        <div>
+
+          <h2 class="section-display-title">
+            こんな作業シーンを<br>
+            想定しています。
+          </h2>
+        </div>
+        <p class="section-description">
+          作業スタイルによって気になるポイントが異なるため、以下の5つのシーンで使い心地を検証しています。ご自身の普段の作業に近いものを選んでみてください。
+        </p>
+      </div>
+
+      <div class="scenes-bento-grid">
+        <button type="button" class="scene-tile reveal-item delay-1" data-select-role="エンジニア・開発">
+          <div>
+            <div class="scene-code-head">ENG <span>01</span></div>
+            <h3 class="scene-job-label">エンジニア / 開発職</h3>
+            <p class="scene-body">
+              キーボードの隙間に破片が入るのを防ぎ、キーを打つ手を止めたくない作業中。夜遅くまでの開発作業でも、お腹に重たさを残さずに野菜を補給したいときに。
+            </p>
+          </div>
+          <div class="scene-cta-line">
+            <span>この職種として開発案内を受け取る</span>
+
+          </div>
+        </button>
+
+        <button type="button" class="scene-tile reveal-item delay-2" data-select-role="UI/UXデザイナー・クリエイター">
+          <div>
+            <div class="scene-code-head">DSG <span>02</span></div>
+            <h3 class="scene-job-label">UI/UXデザイナー / クリエイター</h3>
+            <p class="scene-body">
+              ペンタブレットやマウス、画面に指紋や油をつけたくない制作作業中。デスクの上を散らかさず、手元を汚さずに小腹を満たしたいときに。
+            </p>
+          </div>
+          <div class="scene-cta-line">
+            <span>この職種として開発案内を受け取る</span>
+
+          </div>
+        </button>
+
+        <button type="button" class="scene-tile reveal-item delay-1" data-select-role="役員・マネジメント">
+          <div>
+            <div class="scene-code-head">MGT <span>03</span></div>
+            <h3 class="scene-job-label">経営層・役員 / プロダクトマネージャー</h3>
+            <p class="scene-body">
+              オンライン会議やレビューが続いて、まとまった昼食時間をとれなかった日。マイクに咀嚼音を乗せず、口元を汚さずにサッと数秒で野菜をとりたいときに。
+            </p>
+          </div>
+          <div class="scene-cta-line">
+            <span>この職種として開発案内を受け取る</span>
+
+          </div>
+        </button>
+
+        <button type="button" class="scene-tile reveal-item delay-2" data-select-role="研究者・データ分析">
+          <div>
+            <div class="scene-code-head">RES <span>04</span></div>
+            <h3 class="scene-job-label">研究職 / データ分析 / 学術執筆</h3>
+            <p class="scene-body">
+              資料やパソコンが並ぶデスクの上で、汚れる心配をせずに作業に没頭したいとき。作業中の小腹満たしとして、野菜を手軽にとりたいときに。
+            </p>
+          </div>
+          <div class="scene-cta-line">
+            <span>この職種として開発案内を受け取る</span>
+
+          </div>
+        </button>
+
+        <button type="button" class="scene-tile reveal-item delay-3" data-select-role="パソコンを使用した事務作業">
+          <div>
+            <div class="scene-code-head">OPS <span>05</span></div>
+            <h3 class="scene-job-label">経理・法務・人事・営業事務 / PC事務作業</h3>
+            <p class="scene-body">
+              書類や伝票、共有のパソコンを扱いながらのデスクワーク。匂いや音で周りの席に気をつかうことなく、引き出しからサッと取り出して食べたいときに。
+            </p>
+          </div>
+          <div class="scene-cta-line">
+            <span>この職種として開発案内を受け取る</span>
+
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION 5: VALIDATION CTA / TESTER ENTRY FORM
+         ================================================================== -->
+    <section id="sec-entry" class="section-frame entry-section-wrap">
+      <div class="luxury-console reveal-item">
+        <div class="console-top">
+          <div>
+
+            <h2 class="console-heading">開発の最新案内を受け取る。</h2>
+          </div>
+          <p class="console-sub">
+            「YESS」は現在企画・開発検証中のプロジェクトです。アンケートにお答えいただいた方に、試作の進捗状況や最新情報、今後の案内をお届けします。（所要時間：約45秒）
+          </p>
+        </div>
+
+        <div class="console-progress-bar">
+          <span class="progress-title">回答状況</span>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="form-progress-fill"></div>
+          </div>
+          <span id="form-progress-text">0 / 7 項目完了</span>
+        </div>
+
+        <form id="tester-form" class="tester-form-body" novalidate>
+          <!-- Anti-spam Honeypot Field (invisible to real users, trap for bots) -->
+          <div style="display:none;" aria-hidden="true">
+            <input type="text" name="website_hp_check" id="form-hp-field" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Q1: Role -->
+          <div class="question-block reveal-item">
+            <div class="question-head">
+              <span class="q-num">Q1.</span>
+              <h3 class="q-title">普段の主な仕事内容をお選びください</h3>
+              <span class="q-badge">単一選択</span>
+            </div>
+            <div class="chip-grid" data-group="role" data-multi="false">
+              <button type="button" class="choice-chip" data-value="エンジニア・開発">
+                <span class="chip-box"></span>
+                <span>エンジニア・開発</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="UI/UXデザイナー・クリエイター">
+                <span class="chip-box"></span>
+                <span>UI/UXデザイナー・クリエイター</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="役員・マネジメント">
+                <span class="chip-box"></span>
+                <span>役員・マネジメント</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="研究者・データ分析">
+                <span class="chip-box"></span>
+                <span>研究者・データ分析</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="パソコンを使用した事務作業">
+                <span class="chip-box"></span>
+                <span>パソコンを使用した事務作業</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="その他">
+                <span class="chip-box"></span>
+                <span>その他（自由記述）</span>
+              </button>
+            </div>
+            <div class="other-role-box" id="role-other-wrap">
+              <input type="text" class="luxury-input" id="role-other-input" placeholder="具体的なお仕事内容をご記入ください">
+            </div>
+          </div>
+
+          <!-- Q2: PC Hours -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q2.</span>
+              <h3 class="q-title">1日の平均パソコン作業時間はどれくらいですか？</h3>
+              <span class="q-badge">単一選択</span>
+            </div>
+            <div class="chip-grid" data-group="hours" data-multi="false">
+              <button type="button" class="choice-chip" data-value="4時間未満">
+                <span class="chip-box"></span>
+                <span>4時間未満</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="4〜8時間">
+                <span class="chip-box"></span>
+                <span>4〜8時間</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="8〜12時間">
+                <span class="chip-box"></span>
+                <span>8〜12時間</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="12時間以上">
+                <span class="chip-box"></span>
+                <span>12時間以上</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q3: Pain Points -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q3.</span>
+              <h3 class="q-title">パソコン作業中の間食で、一番困っていることは何ですか？</h3>
+              <span class="q-badge">複数選択可</span>
+            </div>
+            <div class="chip-grid" data-group="pains" data-multi="true">
+              <button type="button" class="choice-chip" data-value="キーボードやマウスに油やベタつきがつく">
+                <span class="chip-box"></span>
+                <span>キーボードやマウスに油やベタつきがつく</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="デスクやキーの隙間に粉・破片が落ちる">
+                <span class="chip-box"></span>
+                <span>デスクやキーの隙間に粉・破片が落ちる</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="噛む音や匂いが、周囲やオンライン会議で気になる">
+                <span class="chip-box"></span>
+                <span>噛む音や匂いが、周囲やオンライン会議で気になる</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="片手がふさがってタイピングが止まる">
+                <span class="chip-box"></span>
+                <span>片手がふさがってタイピングが止まる</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="昼食が麺類やパンばかりで野菜が足りない">
+                <span class="chip-box"></span>
+                <span>昼食が麺類やパンばかりで野菜が足りない</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q4: Preferred Flavor (Synced from Flavor Vote) -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q4.</span>
+              <h3 class="q-title">試作品として優先的に食べてみたい味（希望フレーバー）</h3>
+              <span class="q-badge">複数選択可（上のフレーバー選択と自動連動）</span>
+            </div>
+            <div class="chip-grid" data-group="preferred_flavor" data-multi="true">
+              <button type="button" class="choice-chip" data-value="完熟トマト＆バジル">
+                <span class="chip-box"></span>
+                <span>完熟トマト＆バジル</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="キャロット＆ローストナッツ">
+                <span class="chip-box"></span>
+                <span>キャロット＆ローストナッツ</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="ブラックペッパー＆芳醇チーズ">
+                <span class="chip-box"></span>
+                <span>ブラックペッパー＆芳醇チーズ</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="北海道かぼちゃ＆アーモンド">
+                <span class="chip-box"></span>
+                <span>北海道かぼちゃ＆アーモンド</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="芳醇スパイスカリー＆オニオン">
+                <span class="chip-box"></span>
+                <span>芳醇スパイスカリー＆オニオン</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="焦がし醤油＆ロースト枝豆">
+                <span class="chip-box"></span>
+                <span>焦がし醤油＆ロースト枝豆</span>
+              </button>
+            </div>
+            <div id="q4-custom-flavor-note"
+              style="display: none; margin-top: 10px; font-size: 13px; color: var(--accent-brass); font-weight: 800;">
+            </div>
+          </div>
+
+          <!-- Q5: Price Acceptability (PSM: 価格受容性検証) -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q5.</span>
+              <h3 class="q-title">1袋（1日分のデスク間食・スタンドパウチ想定）あたり、継続して買いやすい価格帯はどれですか？</h3>
+              <span class="q-badge">単一選択</span>
+            </div>
+            <div class="chip-grid" data-group="price_sensitivity" data-multi="false">
+              <button type="button" class="choice-chip" data-value="200円〜280円（一般的な菓子・コンビニ並み）">
+                <span class="chip-box"></span>
+                <span>200円〜280円（一般の菓子並み）</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="280円〜350円（一般的なプロテインバー・栄養補助食品並み）">
+                <span class="chip-box"></span>
+                <span>280円〜350円（栄養バー並み）</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="350円〜450円（高品質オーガニック・健康スナック並み）">
+                <span class="chip-box"></span>
+                <span>350円〜450円（健康スナック並み）</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="450円以上でも、パソコンを汚さず野菜が摂れるなら価値を感じる">
+                <span class="chip-box"></span>
+                <span>450円以上でも価値があれば購入したい</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="価格よりも「本当に手が汚れないか・美味しいか」を重視する">
+                <span class="chip-box"></span>
+                <span>価格よりもデスク適性・味の品質を最重視</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q6: Health Food & Interview -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q6.</span>
+              <h3 class="q-title">普段の健康食品の購入状況と、簡単なヒアリング（15分）へのご協力について</h3>
+              <span class="q-badge">単一選択</span>
+            </div>
+            <div class="chip-grid-stack" data-group="health_interview" data-multi="false">
+              <button type="button" class="choice-chip" data-value="健康食品をよく買う ／ 15分程度のオンラインヒアリング・アンケートに協力できる">
+                <span class="chip-box"></span>
+                <span>健康食品をよく買う ／ 15分程度のオンラインヒアリング・アンケートに協力できる</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="健康食品をよく買う ／ 案内メールの受取のみ希望">
+                <span class="chip-box"></span>
+                <span>健康食品をよく買う ／ 案内メールの受取のみ希望</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="たまに買う・過去に買ったことがある ／ ヒアリング・アンケートに協力できる">
+                <span class="chip-box"></span>
+                <span>たまに買う・過去に買ったことがある ／ ヒアリング・アンケートに協力できる</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="たまに買う・過去に買ったことがある ／ 案内メールの受取のみ希望">
+                <span class="chip-box"></span>
+                <span>たまに買う・過去に買ったことがある ／ 案内メールの受取のみ希望</span>
+              </button>
+              <button type="button" class="choice-chip" data-value="普段は買わないが、今回のコンセプトには興味がある">
+                <span class="chip-box"></span>
+                <span>普段は買わないが、今回のコンセプトには興味がある</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Q7: Email -->
+          <div class="question-block reveal-item delay-1">
+            <div class="question-head">
+              <span class="q-num">Q7.</span>
+              <h3 class="q-title">最新案内のお届け先メールアドレス</h3>
+              <span class="q-badge">任意（案内希望の方のみ）</span>
+            </div>
+            <input type="email" class="luxury-input" id="tester-email"
+              placeholder="your-email@example.com（※未入力でも送信可能です）">
+            <p class="privacy-note">
+              ※メールアドレスをご入力いただいた方へ開発の進捗や優先案内をお届けします。未入力でもアンケート回答として集計されます。個人情報は当プロジェクトの<button type="button"
+                class="inline-link-btn" id="link-privacy-in-form">プライバシーポリシー</button>に基づき適切に管理いたします。
+            </p>
+          </div>
+
+          <button type="submit" class="form-submit-btn reveal-item delay-2" id="btn-form-submit">アンケートを送信する</button>
+        </form>
+
+        <!-- Post-Submission Receipt Panel -->
+        <div class="completion-panel" id="completion-panel" aria-live="polite">
+          <div class="receipt-heading">アンケートの送信を受け付けました</div>
+          <p class="receipt-lead">
+            ご回答ありがとうございます。以下の内容でアンケートの回答を受け付けました。
+          </p>
+          <div class="receipt-table" id="receipt-summary"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SECTION: PROJECT OPERATOR INFORMATION (プロジェクト運営者情報)
+         ================================================================== -->
+    <section class="section-frame operator-section" id="sec-operator">
+      <div class="operator-container reveal-item">
+        <div class="operator-header">
+
+          <h2 class="operator-title">プロジェクト運営者情報</h2>
+          <p class="operator-desc">
+            「YESS」は、デスクワーカーの健康的な間食習慣と画面作業の集中環境を両立するために発足した、新商品企画・需要検証プロジェクトです。
+          </p>
+        </div>
+        <div class="operator-grid">
+          <dl class="operator-spec-list">
+            <div class="operator-spec-row">
+              <dt>プロジェクト名</dt>
+              <dd>YESS プロジェクト準備室</dd>
+            </div>
+            <div class="operator-spec-row">
+              <dt>事業内容</dt>
+              <dd>働くデスクワーカー向け一口野菜スナック・未利用野菜アップサイクル食品の企画、試作開発、および市場受容性（PSM）の検証</dd>
+            </div>
+            <div class="operator-spec-row">
+              <dt>運営責任者</dt>
+              <dd>YESS プロジェクト準備室　製品開発責任者</dd>
+            </div>
+            <div class="operator-spec-row">
+              <dt>お問合せ窓口</dt>
+              <dd>yongdujiateng22@gmail.com ／ 本LP内案内登録フォーム</dd>
+            </div>
+            <div class="operator-spec-row">
+              <dt>個人情報の取扱い</dt>
+              <dd>
+                取得したメールアドレスおよびアンケート回答は、製品開発の最新案内および統計的分析にのみ厳重に管理・利用いたします。<br>
+                詳細は<button type="button" class="inline-link-btn"
+                  id="btn-open-privacy">プライバシーポリシー（個人情報保護方針）</button>をご確認ください。
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Micro-interaction feedback indicator -->
+    <div class="interaction-toast" id="interaction-toast" aria-live="polite">
+      <span class="toast-check">✓</span>
+      <span class="toast-text" id="toast-text">設問に反映しました</span>
+    </div>
+
+
+    <!-- Mobile Floating Sticky CTA (Discreet, High-Conversion) -->
+    <aside class="mobile-sticky-cta" id="mobile-sticky-bar" aria-label="開発案内登録ショートカット">
+      <div class="mobile-cta-content">
+        <div class="mobile-cta-label">
+          <strong>YESS</strong>
+          <span>開発最新案内・登録受付中</span>
+        </div>
+        <a href="#sec-entry" class="mobile-cta-action-btn" id="btn-mobile-jump">案内登録</a>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Top Luxury Editorial Footer -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <strong>YESS // ひとくち野菜、ぽりっと手軽に</strong>
+      <span>コンセプト検証・開発案内受付 // © 2026 YESS Project.</span>
+    </div>
+    <div class="footer-links-group">
+      <a href="#sec-operator" class="footer-link-item">プロジェクト運営情報</a>
+      <button type="button" class="footer-link-item" id="btn-footer-privacy">プライバシーポリシー</button>
+      <a href="#top" class="footer-link-item">ページの先頭へ ↑</a>
+    </div>
+  </footer>
+
+  <!-- ==================================================================
+       PRIVACY POLICY MODAL DIALOG (個人情報保護方針)
+       ================================================================== -->
+  <div id="privacy-modal" class="editorial-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-modal-title"
+    hidden>
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-dialog-panel">
+      <div class="modal-dialog-header">
+        <div class="modal-header-text">
+
+          <h2 class="modal-title" id="privacy-modal-title">プライバシーポリシー</h2>
+        </div>
+        <button type="button" class="modal-close-btn" id="btn-close-privacy" aria-label="閉じる">×</button>
+      </div>
+      <div class="modal-dialog-body">
+        <p class="policy-lead">
+          YESS プロジェクト準備室（以下、「当プロジェクト」といいます）は、本ランディングページ（以下、「本サイト」といいます）における訪問者およびアンケート回答・案内登録者（以下、「利用者」といいます）の個人情報の保護について、個人情報の保護に関する法律（以下、「個人情報保護法」といいます）および関係法令を遵守し、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます）を定めます。
+        </p>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第1条（収集する情報）</h3>
+          <p>当プロジェクトは、本サイトにおいて以下の情報を収集することがあります。</p>
+          <ul class="policy-list">
+            <li>連絡先情報：メールアドレス</li>
+            <li>アンケート情報：職種、1日のPC作業時間、間食における課題・悩み、希望フレーバー、価格受容性、健康食品の購買状況、ヒアリング協力可否、自由記述リクエスト等</li>
+            <li>アクセスログ情報：Cookie、端末情報、IPアドレス、ブラウザ種別、閲覧ページ、滞在時間（個人を特定しない統計情報として収集）</li>
+          </ul>
+        </section>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第2条（利用目的）</h3>
+          <p>当プロジェクトは、収集した情報を以下の目的のためにのみ利用します。</p>
+          <ul class="policy-list">
+            <li>「YESS」の開発進捗案内、および関連情報の送付</li>
+            <li>デスクワーカーの間食実態および製品コンセプトに関する需要検証・統計的分析</li>
+            <li>新製品・開発進捗に関する情報提供（希望者のみ）</li>
+            <li>15分程度のオンラインヒアリングのご依頼および日程調整（承諾いただいた方のみ）</li>
+            <li>利用者からのお問合せ対応および本人確認</li>
+          </ul>
+        </section>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第3条（個人情報の第三者提供）</h3>
+          <p>当プロジェクトは、法令で認められる場合を除き、利用者の事前の同意なく個人情報を第三者に提供いたしません。</p>
+        </section>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第4条（安全管理措置）</h3>
+          <p>当プロジェクトは、収集した個人情報の漏洩、滅失または毀損の防止その他の安全管理のために、適切なセキュリティ対策を講じ、厳重に管理いたします。</p>
+        </section>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第5条（個人情報の開示・訂正・削除）</h3>
+          <p>利用者は、当プロジェクトが保有する自身の個人情報について、開示・訂正・利用停止・削除を求めることができます。ご希望の際はお問合せ窓口までご連絡ください。速やかに対応いたします。</p>
+        </section>
+
+        <section class="policy-clause">
+          <h3 class="clause-heading">第6条（お問合せ窓口）</h3>
+          <p>本ポリシーに関するお問合せ、ご意見、開示請求等は、以下までお願いいたします。<br>
+            YESS プロジェクト準備室 個人情報取扱窓口<br>
+            E-mail: yongdujiateng22@gmail.com
+          </p>
+        </section>
+
+        <p class="policy-footnote">制定日：2026年10月23日</p>
+      </div>
+      <div class="modal-dialog-footer">
+        <button type="button" class="modal-confirm-btn" id="btn-confirm-privacy">同意して閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
