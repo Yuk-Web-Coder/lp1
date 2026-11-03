@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="community.css">
+  <link rel="stylesheet" href="community.css?v=2">
 </head>
 
 <body>
@@ -113,6 +113,7 @@
                 <div class="cm-phone-bar-title">YESS 開発共創ラボ<span class="cm-phone-bar-sub">オープンチャット</span></div>
               </div>
               <div class="cm-chat" id="cm-chat" aria-hidden="true">
+                <div class="cm-chat-spacer"></div>
                 <div class="cm-sys" data-step>今日</div>
 
                 <div class="cm-msg" data-step>
@@ -120,44 +121,99 @@
                   <div class="cm-msg-body">
                     <span class="cm-msg-name">リモートワーカー</span>
                     <div class="cm-bubble">作業中にポテチ食べてたら、キーボードが油で大惨事に…😭</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">😭 9</span>
+                      <span class="cm-react">👍 14</span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="cm-msg" data-step>
                   <div class="cm-avatar">🦊</div>
                   <div class="cm-msg-body">
-                    <span class="cm-msg-name">経理のひと</span>
-                    <div class="cm-bubble">わかる…あと夕方4時に急にお腹すきますよね</div>
+                    <span class="cm-msg-name">PC事務のひと</span>
+                    <div class="cm-bubble">わかりすぎる笑。あと夕方4時に急にお腹すいて集中切れますよね</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">❤️ 11</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cm-msg" data-step>
+                  <div class="cm-avatar">💻</div>
+                  <div class="cm-msg-body">
+                    <span class="cm-msg-name">エンジニア</span>
+                    <div class="cm-bubble">甘いチョコだと後で眠くなるし、デスク用のちょうどいい間食がほんとない…</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">👍 16</span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="cm-msg cm-msg--me" data-step data-typing>
                   <div class="cm-avatar">🥕</div>
                   <div class="cm-msg-body">
-                    <div class="cm-bubble">まさにそれを解決したくて開発してます！<br>ということで投票お願いします🙏</div>
+                    <div class="cm-bubble">まさにその悩みを解決したくて、指が汚れず一口で野菜がとれるキューブを作ってます！💪</div>
                   </div>
                 </div>
 
-                <div class="cm-poll" data-step>
-                  <div class="cm-poll-head">投票</div>
-                  <div class="cm-poll-q">次に試作してほしいのはどっち？</div>
-                  <div class="cm-poll-opt"><i class="cm-poll-fill" style="--pct: 64%"></i><span>キャロット＆ナッツ</span><span>64%</span></div>
-                  <div class="cm-poll-opt"><i class="cm-poll-fill" style="--pct: 36%"></i><span>トマト＆ハーブ</span><span>36%</span></div>
-                  <div class="cm-poll-meta">28人が投票</div>
+                <div class="cm-msg cm-msg--me" data-step>
+                  <div class="cm-avatar">🥕</div>
+                  <div class="cm-msg-body">
+                    <div class="cm-bubble">いま次の試作フレーバーで悩んでいて…！みなさんどっちが気になりますか？</div>
+                  </div>
+                </div>
+
+                <div class="cm-poll" data-step id="cm-poll-card">
+                  <div class="cm-poll-head">📊 リアルタイム投票</div>
+                  <div class="cm-poll-q">次に試作してほしいフレーバーは？</div>
+                  <div class="cm-poll-opt"><i class="cm-poll-fill" style="--pct: 68%"></i><span>キャロット＆香ばしナッツ</span><span class="js-poll-pct" data-target="68">68%</span></div>
+                  <div class="cm-poll-opt"><i class="cm-poll-fill" style="--pct: 32%"></i><span>完熟トマト＆バジルハーブ</span><span class="js-poll-pct" data-target="32">32%</span></div>
+                  <div class="cm-poll-meta"><span id="cm-poll-count" data-start="12" data-target="31">31</span>人が投票中</div>
                 </div>
 
                 <div class="cm-msg" data-step>
                   <div class="cm-avatar">🐻</div>
                   <div class="cm-msg-body">
                     <span class="cm-msg-name">試食モニター</span>
-                    <div class="cm-bubble">試作品食べました！指が汚れないのは最高。ただ、もう少し塩気が弱くてもいいかも</div>
+                    <div class="cm-bubble">先週届いた試作サンプル食べました！本当に指が汚れないのは感動です✨</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">🎉 8</span>
+                      <span class="cm-react">❤️ 12</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cm-msg" data-step>
+                  <div class="cm-avatar">🐻</div>
+                  <div class="cm-msg-body">
+                    <span class="cm-msg-name">試食モニター</span>
+                    <div class="cm-bubble">ただ、作業中の気分転換には、もう少し噛みごたえ（固さ）があってもいいかも？</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">👍 7</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cm-msg" data-step>
+                  <div class="cm-avatar">🐶</div>
+                  <div class="cm-msg-body">
+                    <span class="cm-msg-name">デザイナー</span>
+                    <div class="cm-bubble">私もカリッとしてる方が眠気覚ましになって好きです！</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">👍 10</span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="cm-msg cm-msg--me" data-step data-typing>
                   <div class="cm-avatar">🥕</div>
                   <div class="cm-msg-body">
-                    <div class="cm-bubble">貴重なご意見ありがとうございます！次の試作で塩分を調整してみます📝</div>
+                    <div class="cm-bubble">率直な本音レビューありがとうございます！！次の試作で焼き加減を調整してみます📝</div>
+                    <div class="cm-reactions">
+                      <span class="cm-react">🙌 15</span>
+                      <span class="cm-react">🥕 9</span>
+                    </div>
                   </div>
                 </div>
 
@@ -293,47 +349,112 @@
         });
       });
 
-      // チャットアニメーション
+      // チャットアニメーション（高速テンポ・下からの押し上げスクロール・リアクション・投票カウントアップ）
       var chat = document.getElementById('cm-chat');
       if (!chat) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       var steps = Array.prototype.slice.call(chat.querySelectorAll('[data-step]'));
       var typing = document.getElementById('cm-typing');
+      var pollCountEl = document.getElementById('cm-poll-count');
+      var pollPctEls = Array.prototype.slice.call(chat.querySelectorAll('.js-poll-pct'));
       var timers = [];
       var running = false;
 
       function wait(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
+      function scrollToBottom() {
+        try {
+          chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
+        } catch (_) {
+          chat.scrollTop = chat.scrollHeight;
+        }
+      }
+
+      function animatePollNumbers() {
+        var duration = 1100;
+        var stepsCount = 16;
+        var stepTime = Math.floor(duration / stepsCount);
+        var startVotes = pollCountEl ? parseInt(pollCountEl.getAttribute('data-start') || '12', 10) : 12;
+        var targetVotes = pollCountEl ? parseInt(pollCountEl.getAttribute('data-target') || '31', 10) : 31;
+
+        for (var i = 0; i <= stepsCount; i++) {
+          (function (idx) {
+            wait(function () {
+              var progress = idx / stepsCount;
+              // Ease-out curve
+              var eased = 1 - Math.pow(1 - progress, 3);
+              if (pollCountEl) {
+                pollCountEl.textContent = String(Math.round(startVotes + (targetVotes - startVotes) * eased));
+              }
+              pollPctEls.forEach(function (pctEl) {
+                var targetPct = parseInt(pctEl.getAttribute('data-target') || '0', 10);
+                pctEl.textContent = Math.round(targetPct * eased) + '%';
+              });
+            }, idx * stepTime);
+          })(i);
+        }
+      }
+
       function reset() {
         timers.forEach(clearTimeout);
         timers = [];
-        steps.forEach(function (el) { el.classList.remove('is-shown'); });
+        steps.forEach(function (el) {
+          el.classList.remove('is-shown');
+          el.querySelectorAll('.cm-react').forEach(function (r) {
+            r.classList.remove('is-popped');
+          });
+        });
+        if (pollCountEl) pollCountEl.textContent = pollCountEl.getAttribute('data-start') || '12';
+        pollPctEls.forEach(function (pctEl) { pctEl.textContent = '0%'; });
         typing.hidden = true;
+        chat.scrollTop = 0;
+      }
+
+      function showStep(el) {
+        el.classList.add('is-shown');
+        scrollToBottom();
+
+        // リアクションバッジを時間差でポンポン表示
+        var reacts = el.querySelectorAll('.cm-react');
+        reacts.forEach(function (r, idx) {
+          wait(function () {
+            r.classList.add('is-popped');
+            scrollToBottom();
+          }, 220 + idx * 160);
+        });
+
+        // 投票カードなら数字カウントアップを開始
+        if (el.classList.contains('cm-poll')) {
+          animatePollNumbers();
+        }
       }
 
       function play() {
         reset();
         running = true;
-        var t = 400;
+        var t = 250;
         steps.forEach(function (el) {
           if (el.hasAttribute('data-typing')) {
             wait(function () {
               chat.insertBefore(typing, el);
               typing.hidden = false;
+              scrollToBottom();
             }, t);
-            t += 1100;
+            t += 520;
             wait(function () {
               typing.hidden = true;
-              el.classList.add('is-shown');
+              showStep(el);
             }, t);
           } else {
-            wait(function () { el.classList.add('is-shown'); }, t);
+            wait(function () {
+              showStep(el);
+            }, t);
           }
-          t += el.classList.contains('cm-poll') ? 2200 : 1300;
+          t += el.classList.contains('cm-poll') ? 1450 : 750;
         });
         // 最後まで表示したら少し待ってループ
-        wait(play, t + 4000);
+        wait(play, t + 3200);
       }
 
       if ('IntersectionObserver' in window) {

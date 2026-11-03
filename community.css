@@ -396,9 +396,20 @@ a {
   padding: 16px 12px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 10px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cm-chat::-webkit-scrollbar {
+  display: none;
+}
+
+.cm-chat-spacer {
+  flex: 1 0 auto;
 }
 
 .cm-msg {
@@ -461,6 +472,60 @@ a {
   border-top-right-radius: 4px;
 }
 
+/* Emoji reaction pills */
+.cm-reactions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+  padding-left: 4px;
+}
+
+.cm-msg--me .cm-reactions {
+  justify-content: flex-end;
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+.cm-react {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--c-text);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(31, 42, 39, 0.08);
+}
+
+.js .cm-react {
+  opacity: 0;
+  transform: scale(0.4);
+}
+
+.js .cm-react.is-popped {
+  animation: cm-react-pop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cm-react-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Poll card */
 .cm-poll {
   align-self: center;
@@ -468,6 +533,7 @@ a {
   background: #FFFFFF;
   border-radius: 14px;
   padding: 12px 14px;
+  flex-shrink: 0;
 }
 
 .cm-poll-head {
@@ -506,7 +572,7 @@ a {
   inset: 0 auto 0 0;
   width: 0;
   background: var(--c-sage-soft);
-  transition: width 1.2s ease 0.3s;
+  transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
 }
 
 .cm-poll-meta {
@@ -803,5 +869,10 @@ a {
 
   .cm-typing {
     display: none !important;
+  }
+
+  .js .cm-react {
+    opacity: 1;
+    transform: none;
   }
 }
