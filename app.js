@@ -610,6 +610,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Catch-copy question under the video: "間食で野菜が摂れるとしたら？" (single choice, 1 tap)
+  const vegFeedback = document.getElementById('veg-question-feedback');
+  const vegButtons = document.querySelectorAll('.veg-option-btn');
+  vegButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const vegVal = btn.getAttribute('data-veg-value');
+      if (!vegVal || btn.classList.contains('is-selected')) return;
+      vegButtons.forEach((b) => {
+        b.classList.toggle('is-selected', b === btn);
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      // Records to GA4 (lp_tap_interaction) and the GAS sheet as a tap_event
+      logTapEvent('Q0:間食で野菜が摂れるとしたら', vegVal, '選択');
+      if (vegFeedback) vegFeedback.hidden = false;
+    });
+  });
+
   // Section 2 Checkpoint Poll
   const checkpointBtns = document.querySelectorAll('.checkpoint-btn');
   const pollFeedbackMsg = document.getElementById('poll-feedback-msg');

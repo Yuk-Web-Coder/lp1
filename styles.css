@@ -326,6 +326,30 @@ html.js .reveal-item.is-revealed {
   color: var(--accent-brass);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-lab-btn {
+  padding: 12px 16px;
+  background-color: transparent;
+  border: 1px solid var(--accent-brass);
+  color: var(--accent-brass);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-lab-btn:hover {
+  background-color: var(--accent-brass);
+  color: var(--bg-sumi);
+}
+
 .header-action-btn {
   padding: 12px 24px;
   background-color: var(--accent-brass);
@@ -335,6 +359,7 @@ html.js .reveal-item.is-revealed {
   font-weight: 900;
   letter-spacing: 0.02em;
   transition: background-color 0.2s ease;
+  white-space: nowrap;
 }
 
 .header-action-btn:hover {
@@ -772,6 +797,53 @@ main[id] {
   background-color: var(--bg-elevated);
   color: var(--text-ivory);
   font-weight: 800;
+}
+
+/* Catch-copy question under the video (間食で野菜が摂れるとしたら？) */
+.veg-question-stage .caption-desc {
+  margin-bottom: 20px;
+}
+
+.veg-options {
+  margin-bottom: 0;
+}
+
+.veg-option-btn {
+  padding: 12px 16px;
+  background-color: var(--bg-charcoal);
+  border: 1px solid var(--border-strong);
+  color: var(--text-ivory);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.veg-option-btn:hover {
+  border-color: var(--accent-brass);
+}
+
+.veg-option-btn:focus-visible {
+  outline: 2px solid var(--accent-brass);
+  outline-offset: 2px;
+}
+
+.veg-option-btn.is-selected {
+  border-color: var(--accent-brass);
+  background-color: var(--bg-elevated);
+  color: var(--accent-brass);
+  font-weight: 800;
+}
+
+.veg-question-stage .quick-survey-feedback {
+  margin: 16px 0 0;
+}
+
+.veg-question-stage .quick-survey-feedback[hidden] {
+  display: none;
 }
 
 /* Quick Survey Immediate Completion Feedback */
@@ -1816,6 +1888,63 @@ position: relative;
   font-size: var(--size-small);
 }
 
+/* Post-Survey Lab Member Card */
+.receipt-lab-card {
+  margin-top: 36px;
+  padding: 32px;
+  background-color: var(--bg-charcoal);
+  color: var(--text-ivory);
+  border: 1px solid var(--accent-brass);
+  text-align: left;
+}
+
+.receipt-lab-title {
+  font-size: var(--size-subhead);
+  font-weight: 800;
+  color: var(--text-ivory);
+  line-height: 1.45;
+  margin: 0 0 12px;
+}
+
+.receipt-lab-desc {
+  font-size: var(--size-body);
+  font-weight: 200;
+  color: var(--text-warm-gray);
+  line-height: 1.8;
+  margin: 0 0 24px;
+}
+
+.receipt-lab-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.receipt-lab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  background-color: var(--accent-brass);
+  color: var(--bg-sumi);
+  font-size: var(--size-body);
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.receipt-lab-btn:hover {
+  background-color: var(--accent-brass-bright);
+  transform: translateY(-2px);
+}
+
+.receipt-lab-note {
+  font-size: var(--size-micro);
+  color: var(--text-muted);
+}
+
 .receipt-row {
   display: grid;
   grid-template-columns: 200px 1fr;
@@ -2592,6 +2721,15 @@ position: relative;
   .brand-plus-icon {
     width: 16px;
     height: 16px;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-lab-btn {
+    padding: 8px 12px;
+    font-size: 11px;
   }
 
   .header-action-btn {

@@ -53,7 +53,10 @@
         <a href="#sec-hypothesis" class="nav-item">05 試作設計</a>
         <a href="#sec-scenes" class="nav-item">06 想定シーン</a>
       </nav>
-      <a href="#sec-entry" class="header-action-btn">開発案内を受け取る</a>
+      <div class="header-actions">
+        <a href="community.html" class="header-lab-btn" target="_blank" rel="noopener noreferrer">ラボメンバーになる</a>
+        <a href="#sec-entry" class="header-action-btn">アンケート</a>
+      </div>
     </div>
   </header>
 
@@ -75,40 +78,25 @@
       <div class="cinema-captions-container">
 
 
-        <!-- Caption Stage 1: Wide Office (0% - 30%) -->
-        <div class="cinema-caption-stage is-active" id="caption-stage-1">
-
+        <!-- Caption Stage: Catch Copy x Quick Question (single card) -->
+        <div class="cinema-caption-stage veg-question-stage is-active" id="caption-stage-1">
           <h2 class="caption-heading">
-            PC作業中、ふと手が伸びる<br>
-            デスクの間食。
+            もし、デスクの間食で<br>
+            手軽に野菜が摂れるとしたら？
           </h2>
           <p class="caption-desc">
-            モニターを見つめたまま、思考の合間にデスクの上の間食へ手が伸びる。キーボードを叩き続ける日々の作業環境で、無意識に繰り返されるひとコマです。
+            パソコン作業中の小腹満たし。あなたならどう感じますか？直感にいちばん近いものを1つ選んでください（1タップで回答完了）。
           </p>
-        </div>
-
-        <!-- Caption Stage 2: Zoom to Desk Snack (30% - 65%) -->
-        <div class="cinema-caption-stage" id="caption-stage-2">
-
-          <h2 class="caption-heading">
-            油で汚れるキーボード。<br>
-            落ちる粉。昼食の野菜不足。
-          </h2>
-          <p class="caption-desc">
-            指先のベタつきでマウスやキーが汚れるストレス。かじるたびに散らばる細かい破片。そして、炭水化物に偏りがちなランチへの罪悪感。デスクワーカーの日常には小さな摩擦が潜んでいます。
-          </p>
-        </div>
-
-        <!-- Caption Stage 3: Extreme Macro Close-Up (65% - 100%) -->
-        <div class="cinema-caption-stage" id="caption-stage-3">
-
-          <h2 class="caption-heading">
-            ひとくち野菜、<br>
-            ぽりっと手軽に。
-          </h2>
-          <p class="caption-desc">
-            画面から目を離さず、指もキーボードも汚さずに野菜を手軽に補給できる、デスクワーカーのための新しい一口間食「YESS」の設計がここから始まります。
-          </p>
+          <div class="survey-options-2x2 veg-options" role="group" aria-label="間食で野菜が摂れるとしたら">
+            <button type="button" class="veg-option-btn" data-veg-value="ぜひ食べたい（野菜不足が気になっている）">ぜひ食べたい！<br>毎日の野菜不足が気になる</button>
+            <button type="button" class="veg-option-btn" data-veg-value="手やキーボードが汚れないなら試したい">手やキーボードが<br>汚れないなら試してみたい</button>
+            <button type="button" class="veg-option-btn" data-veg-value="お菓子として美味しいならアリ">お菓子として<br>ちゃんと美味しいならアリ</button>
+            <button type="button" class="veg-option-btn" data-veg-value="間食に野菜は求めていない">間食に野菜は求めていない<br>（甘いものやスナック派）</button>
+          </div>
+          <div class="quick-survey-feedback" id="veg-question-feedback" hidden>
+            <span class="quick-feedback-check">✓ 回答を記録しました</span>
+            <p class="quick-feedback-note">ご協力ありがとうございます。選び直すこともできます。</p>
+          </div>
         </div>
 
         <!-- Scroll Indicator Hint -->
@@ -888,6 +876,21 @@
             ご回答ありがとうございます。以下の内容でアンケートの回答を受け付けました。
           </p>
           <div class="receipt-table" id="receipt-summary"></div>
+
+          <!-- Lab Member Invitation Card -->
+          <div class="receipt-lab-card">
+            <h3 class="receipt-lab-title">一緒にデスク間食をつくる、開発共創ラボメンバーになりませんか？</h3>
+            <p class="receipt-lab-desc">
+              YESSは、現役大学生チームが挑む新しいデスク間食プロジェクトです。<br>
+              公式LINEオープンチャットで、味の投票や試作品の先行テイスティング、開発の裏側を共有しながら一緒に商品を作っていく仲間を募集しています。
+            </p>
+            <div class="receipt-lab-actions">
+              <a href="community.html" class="receipt-lab-btn" target="_blank" rel="noopener noreferrer">
+                <span>ラボメンバーになる（詳細を見る）</span>
+              </a>
+              <span class="receipt-lab-note">※ 完全匿名OK・見る専歓迎・いつでもワンタップで退出自由です</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
