@@ -774,6 +774,31 @@ main[id] {
   font-weight: 800;
 }
 
+/* Quick Survey Immediate Completion Feedback */
+.quick-survey-feedback {
+  margin: 16px 0;
+  padding: 16px 16px;
+  background-color: var(--bg-charcoal);
+  border: 1px solid var(--accent-brass);
+  text-align: center;
+}
+
+.quick-feedback-check {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent-brass);
+  margin-bottom: 4px;
+}
+
+.quick-feedback-note {
+  font-size: 12px;
+  font-weight: 200;
+  color: var(--text-warm-gray);
+  margin: 0;
+  line-height: 1.5;
+}
+
 .luxury-cta-btn {
   display: flex;
   justify-content: space-between;
@@ -2182,12 +2207,48 @@ position: relative;
     font-size: 12px;
   }
 
-  .cinema-sticky-stage {
-    top: 64px;
-    height: calc(100vh - 64px);
+  /* Mobile Cinema Experience: Smooth Auto-Play Video & Editorial Flow (No Stacking) */
+  .cinema-scroll-track {
+    height: auto;
+    position: relative;
+    padding-top: 64px;
   }
 
-  .cinema-captions-container,
+  .cinema-sticky-stage {
+    position: relative;
+    top: 0;
+    height: auto;
+    overflow: visible;
+    background-color: var(--bg-sumi);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cinema-video-layer {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  #scroll-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cinema-captions-container {
+    position: relative;
+    inset: auto;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+  }
+
   .intro-editorial-col,
   .intro-gallery-col,
   .flavor-board-section,
@@ -2258,12 +2319,21 @@ position: relative;
     display: none;
   }
 
-  /* Cinema Captions - Compact & Non-overlapping on mobile */
+  /* Cinema Captions - Normal flow editorial cards on mobile */
+  html.js .cinema-caption-stage,
   .cinema-caption-stage {
-    left: 16px;
-    right: 16px;
-    bottom: 24px;
-    padding: 16px 20px;
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    padding: 20px 20px;
+    margin-bottom: 0;
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg-surface);
   }
 
   .caption-heading {

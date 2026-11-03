@@ -200,19 +200,26 @@ document.addEventListener('DOMContentLoaded', () => {
   let targetTime = 0;
   let videoDuration = 10.0;
 
-  if (video) {
-    video.addEventListener('loadedmetadata', () => {
-      if (video.duration && !isNaN(video.duration)) {
-        videoDuration = video.duration;
-      }
-    });
+  const isMobile = window.innerWidth <= 680;
 
+  if (video) {
     video.muted = true;
-    video.pause();
+    if (isMobile) {
+      video.loop = true;
+      video.play().catch(() => {});
+    } else {
+      video.addEventListener('loadedmetadata', () => {
+        if (video.duration && !isNaN(video.duration)) {
+          videoDuration = video.duration;
+        }
+      });
+      video.pause();
+    }
   }
 
-  // Smooth scroll scrubbing
+  // Smooth scroll scrubbing (Desktop only; mobile uses smooth normal playback)
   function handleScrollScrub() {
+    if (window.innerWidth <= 680) return;
     if (!cinemaTrack || !video || isAutoPlaying) return;
 
     const rect = cinemaTrack.getBoundingClientRect();
@@ -537,10 +544,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pct = Math.round((completed / 7) * 100);
     if (progressFill) progressFill.style.transform = `scaleX(${pct / 100})`;
-    if (progressText) progressText.textContent = `${completed} / 7 項目完了 (${pct}%)`;
+    if (progressText) {
+      progressText.textContent = completed > 0
+        ? `${completed} / 7 項目回答中（気になる項目だけで送信OK）`
+        : '気になる項目だけ回答して送信OK';
+    }
   }
 
-  // Section 1.5 Quick Survey Buttons
+  // Section 1.5 Quick Survey Buttons (One-tap instant answer & record)
+  const quickFeedback = document.getElementById('quick-survey-feedback');
   document.querySelectorAll('.survey-option-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const painVal = btn.getAttribute('data-sync-pain');
@@ -552,6 +564,48 @@ document.addEventListener('DOMContentLoaded', () => {
         state.pains.add(painVal);
         logTapEvent('Q3:間食の悩み(クイック)', painVal, '選択');
       }
+
+      // Show immediate completion feedback
+      if (quickFeedback) {
+        quickFeedback.style.display = 'block';
+      }
+
+      // Fire conversion immediately so quick-tappers are counted as respondents
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'quick_survey_one_tap',
+          event_label: painVal,
+          product: 'YESS'
+        });
+      }
+
+      // Send instant answer to GAS backend immediately
+      if (CONFIG.SUBMISSION_ENDPOINT && state.pains.size > 0) {
+        const quickPayload = {
+          timestamp: new Date().toISOString(),
+          product: 'YESS',
+          sessionId: sessionId,
+          role: '（クイック回答）',
+          pcHours: '（クイック回答）',
+          painPoints: Array.from(state.pains),
+          preferredFlavors: [],
+          customFlavorRequest: '',
+          priceSensitivity: '',
+          healthFoodAndInterview: '',
+          email: '（クイック回答・未入力）',
+          referrer: document.referrer || 'direct',
+          userAgent: navigator.userAgent
+        };
+        try {
+          fetch(CONFIG.SUBMISSION_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(quickPayload)
+          }).catch(() => {});
+        } catch (_) {}
+      }
+
       syncFormUI();
     });
   });
@@ -693,30 +747,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      if (!state.role) {
-        alert('Q1. 普段の主な仕事内容をお選びください。');
+      // Check if user has answered at least one question or entered email
+      const hasAnyAnswer = state.role || state.hours || state.pains.size > 0 ||
+        state.preferred_flavor.size > 0 || state.customFlavorRequest.trim().length > 0 ||
+        state.price_sensitivity || state.health_interview || state.email.trim().length > 0;
+
+      if (!hasAnyAnswer) {
+        alert('いずれかの設問をお選びいただくか、メールアドレスをご入力のうえ送信してください。');
         return;
       }
-      if (!state.hours) {
-        alert('Q2. 1日の平均パソコン作業時間をお選びください。');
-        return;
-      }
-      if (state.pains.size === 0) {
-        alert('Q3. パソコン作業中の間食で困っていることを1つ以上お選びください。');
-        return;
-      }
-      if (state.preferred_flavor.size === 0 && !state.customFlavorRequest) {
-        alert('Q4. 試作品として優先的に食べてみたい味をお選びいただくか、リクエストをご記入ください。');
-        return;
-      }
-      if (!state.price_sensitivity) {
-        alert('Q5. 1袋あたり継続して買いやすい価格帯をお選びください。');
-        return;
-      }
-      if (!state.health_interview) {
-        alert('Q6. 健康食品の購入状況とヒアリングへのご協力についてお選びください。');
-        return;
-      }
+
       if (state.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email.trim())) {
         alert('有効なメールアドレスをご入力いただくか、案内不要の場合は空欄のまま送信してください。');
         if (emailInput) emailInput.focus();
@@ -725,19 +765,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const finalRole = state.role === 'その他' && state.roleOther.trim()
         ? `その他（${state.roleOther.trim()}）`
-        : state.role;
+        : (state.role || '（未選択）');
 
       const payload = {
         timestamp: new Date().toISOString(),
         product: 'YESS',
         sessionId: sessionId,
         role: sanitizeForSheet(finalRole),
-        pcHours: state.hours,
-        painPoints: Array.from(state.pains),
-        preferredFlavors: Array.from(state.preferred_flavor),
-        customFlavorRequest: sanitizeForSheet(state.customFlavorRequest),
-        priceSensitivity: state.price_sensitivity,
-        healthFoodAndInterview: state.health_interview,
+        pcHours: state.hours || '（未選択）',
+        painPoints: state.pains.size > 0 ? Array.from(state.pains) : ['（未選択）'],
+        preferredFlavors: state.preferred_flavor.size > 0 ? Array.from(state.preferred_flavor) : ['（未選択）'],
+        customFlavorRequest: sanitizeForSheet(state.customFlavorRequest) || '（なし）',
+        priceSensitivity: state.price_sensitivity || '（未選択）',
+        healthFoodAndInterview: state.health_interview || '（未選択）',
         email: state.email.trim() ? sanitizeForSheet(state.email.trim()) : '（未入力・アンケートのみ）',
         referrer: document.referrer || 'direct',
         userAgent: navigator.userAgent

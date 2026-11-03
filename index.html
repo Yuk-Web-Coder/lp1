@@ -65,8 +65,8 @@
     <div class="cinema-sticky-stage" id="cinema-sticky">
       <!-- Background Scrubbing Video -->
       <div class="cinema-video-layer">
-        <video id="scroll-video" muted playsinline preload="auto" poster="assets/video_poster.jpg"
-          src="assets/desk_worker_snack_scrub.mp4">
+        <video id="scroll-video" muted playsinline loop preload="auto" poster="assets/video_poster.jpg"
+          src="assets/desk_worker_snack.mp4">
         </video>
         <div class="video-tint-shade" aria-hidden="true"></div>
       </div>
@@ -184,12 +184,12 @@
 
         <!-- 15-Second Quick Survey CTA -->
         <div>
-          <div class="hero-survey-box">
+          <div class="hero-survey-box" id="hero-survey-box">
             <div class="survey-box-header">
-              <span class="survey-box-tag">15秒アンケート // クリックで回答</span>
+              <span class="survey-box-tag">15秒アンケート // タップで回答完了</span>
             </div>
             <p class="survey-box-question">
-              パソコン作業中の間食で、一番ストレスに感じることはどれですか？（下部の登録フォームに自動反映されます）
+              パソコン作業中の間食で、一番ストレスに感じることはどれですか？（1タップで集計されます）
             </p>
             <div class="survey-options-2x2">
               <button type="button" class="survey-option-btn" data-sync-pain="キーボードやマウスに油やベタつきがつく">
@@ -205,8 +205,15 @@
                 昼ごはんが偏りがちで、野菜不足が気になっている
               </button>
             </div>
-            <a href="#sec-entry" class="luxury-cta-btn">
-              <span>アンケートに回答して<br class="btn-break-mobile">開発案内を受け取る</span>
+
+            <!-- 即時回答完了フィードバック -->
+            <div class="quick-survey-feedback" id="quick-survey-feedback" style="display: none;">
+              <span class="quick-feedback-check">✓ 回答を記録しました</span>
+              <p class="quick-feedback-note">ご協力ありがとうございます。回答内容は新商品開発に反映されます。</p>
+            </div>
+
+            <a href="#sec-flavor-board" class="luxury-cta-btn" id="hero-survey-cta-btn">
+              <span>味の投票・詳細アンケートに進む</span>
             </a>
           </div>
 
@@ -639,10 +646,10 @@
         <div class="console-top">
           <div>
 
-            <h2 class="console-heading">開発の最新案内を受け取る。</h2>
+            <h2 class="console-heading">【最短30秒】製品開発アンケート</h2>
           </div>
           <p class="console-sub">
-            「YESS」は現在企画・開発検証中のプロジェクトです。アンケートにお答えいただいた方に、試作の進捗状況や最新情報、今後の案内をお届けします。（所要時間：約45秒）
+            デスクワーカーの皆さまのリアルな声を製品化に活かします。気になる設問だけの回答でも大歓迎です（メールアドレスの入力は案内希望の方のみでOKです）。
           </p>
         </div>
 
@@ -871,7 +878,7 @@
             </p>
           </div>
 
-          <button type="submit" class="form-submit-btn reveal-item delay-2" id="btn-form-submit">アンケートを送信する</button>
+          <button type="submit" class="form-submit-btn reveal-item delay-2" id="btn-form-submit">アンケートを送信する（メールアドレスなしでも送信可能）</button>
         </form>
 
         <!-- Post-Submission Receipt Panel -->
@@ -941,9 +948,9 @@
       <div class="mobile-cta-content">
         <div class="mobile-cta-label">
           <strong>YESS</strong>
-          <span>開発最新案内・登録受付中</span>
+          <span>開発アンケート受付中（30秒）</span>
         </div>
-        <a href="#sec-entry" class="mobile-cta-action-btn" id="btn-mobile-jump">案内登録</a>
+        <a href="#sec-entry" class="mobile-cta-action-btn" id="btn-mobile-jump">アンケート回答</a>
       </div>
     </aside>
 
