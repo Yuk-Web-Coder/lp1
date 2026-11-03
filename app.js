@@ -839,6 +839,11 @@ document.addEventListener('DOMContentLoaded', () => {
           event_label: 'YESS 開発案内アンケート送信完了',
           product: 'YESS'
         });
+
+        // Google Ads Conversion Event (リードフォームの送信)
+        window.gtag('event', 'conversion', {
+          'send_to': 'AW-18537318358/-TptCOu_7awdENaPpIdF'
+        });
       }
 
       if (receiptSummary) {
